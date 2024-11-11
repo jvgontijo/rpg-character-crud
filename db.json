@@ -1,0 +1,20 @@
+{
+  "characters": [
+    {
+      "id": 1,
+      "name": "John",
+      "age": 25,
+      "race": "Human",
+      "alignment": "Neutral Good",
+      "eyeColor": "Blue",
+      "skinColor": "Light",
+      "hairColor": "Brown",
+      "height": "5'9",
+      "weight": 160,
+      "equipment": [
+        "Sword",
+        "Shield"
+      ]
+    }
+  ]
+}
