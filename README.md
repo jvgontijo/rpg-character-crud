@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+# RPG Character CRUD
+Este projeto é uma aplicação de CRUD (Create, Read, Update, Delete) para gerenciar personagens de RPG. Ele utiliza o React no frontend, Redux para gerenciamento de estado, Material UI para a interface e Json Server para simular uma API backend. A aplicação permite adicionar, editar, listar e excluir personagens, além de mostrar seus detalhes como nome, idade, raça, alinhamento, e mais.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Funcionalidades
+**Listagem de Personagens:** Exibe todos os personagens cadastrados, com detalhes como nome, raça, alinhamento, idade, etc.  
+**Adicionar Personagem:** Permite adicionar novos personagens ao sistema.  
+**Editar Personagem:** Possibilita editar os dados de um personagem já existente.  
+**Excluir Personagem:** Remove um personagem da lista e do banco de dados (simulado com o Json Server).  
 
-## Available Scripts
+## Tecnologias
+**Frontend:** React, Redux, React Router, Material UI  
+**Gerenciamento de Estado:** Redux Toolkit  
+**Simulação de API:** Json Server (para simular um backend local)  
+**Estilização:** Material UI e customizações com CSS  
 
-In the project directory, you can run:
+## Instalação
 
-### `npm start`
+### Pré-requisitos
+**Node.js:** Certifique-se de que o Node.js está instalado. Se não, instale a partir de https://nodejs.org/.
+**npm:** O gerenciador de pacotes npm deve estar instalado.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### Passos para rodar o projeto
+Clone o repositório:
+`git clone https://github.com/seu-usuario/rpg-character-crud.git`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Navegue até o diretório do projeto:
+`cd rpg-character-crud`
 
-### `npm test`
+Instale as dependências:
+`npm install`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Instale o Json Server para simular a API (caso ainda não tenha): 
+`npm install -g json-server`
 
-### `npm run build`
+Crie um arquivo db.json na raiz do projeto com o conteúdo inicial para os personagens:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+{
+  "characters": [
+    {
+      "id": 1,
+      "name": "John",
+      "age": 25,
+      "race": "Human",
+      "alignment": "Neutral Good",
+      "eyeColor": "Blue",
+      "skinColor": "Light",
+      "hairColor": "Brown",
+      "height": "5'9",
+      "weight": 160,
+      "equipment": [
+        "Sword",
+        "Shield"
+      ]
+    }
+  ]
+}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Inicie o Json Server para rodar a API local:
+`json-server --watch db.json --port 5000`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Inicie o servidor de desenvolvimento do React:
+`npm start`
 
-### `npm run eject`
+O Json Server e o servidor do React podem ser rodados em conjunto utilizando concurrently pelo comando adicionado no package.json:
+`npm run dev`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+O projeto estará disponível em http://localhost:3000.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Estrutura de Pastas
+A estrutura de pastas do projeto está organizada da seguinte forma:  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+/src  
+  /components      # Componentes reutilizáveis como formulário de adição/  edição, listagem de personagens, etc.  
+  /redux           # Gerenciamento de estado com Redux Toolkit  
+  /App.js          # Componente principal que gerencia as   
+  /index.js        # Ponto de entrada da aplicação
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Como Funciona
+#### Redux
+**Store:** O estado global da aplicação é gerenciado pelo Redux. A lista de personagens é armazenada no estado e manipulada por ações como fetchCharacters, addCharacter, updateCharacter e deleteCharacter.
+**Slice:** Utiliza o createSlice do Redux Toolkit para definir os reducers e ações de forma simples e concisa.
+**Async Thunks:** As operações assíncronas (como chamadas à API simulada com Json Server) são tratadas com createAsyncThunk para simplificar a lógica de requisições.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Funcionalidade de CRUD
+**Adicionar Personagem:** O formulário de adição permite inserir um novo personagem, que é enviado para o servidor e adicionado à lista.
+**Editar Personagem:** Ao clicar no botão "Editar", o formulário de adição é preenchido com os dados do personagem selecionado, permitindo que você faça alterações e as salve.
+**Excluir Personagem:** Ao clicar em "Excluir", o personagem é removido tanto do estado local quanto do banco de dados (simulado).
+**Listagem:** A lista de personagens é carregada e exibida em uma tabela, com todos os detalhes do personagem e botões para editar ou excluir.
